@@ -1,0 +1,39 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 40px;
+    background: #171923;
+    border-bottom: 1px solid #2d3142;
+}
+
+.title{
+    margin: 0;
+    color: #f8fafc;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.addButton {
+  padding: 12px 20px;
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+
+.addButton:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+}

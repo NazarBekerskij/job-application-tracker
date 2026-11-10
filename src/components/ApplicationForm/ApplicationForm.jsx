@@ -1,45 +1,61 @@
 import { Component } from "react";
+import style from "./ApplicationForm.module.css";
 
 class ApplicationForm extends Component {
   render() {
-    const {company, position, salary, status, onChange, onSubmit} = this.props
+    const { company, position, salary, status, onChange, onSubmit } = this.props;
+
     return (
-      <form onSubmit={onSubmit}>
-        <label>
+      <form className={style.form} onSubmit={onSubmit}>
+        <div className={style.heading}>
+          <h2>Add Application</h2>
+          <p>Track a new job opportunity</p>
+        </div>
+
+        <label className={style.label}>
           Company
-          <input 
-          type="text" 
-          name="company" 
-          value={company}
-          onChange={onChange}
+          <input
+            className={style.input}
+            type="text"
+            name="company"
+            placeholder="e.g. Google"
+            value={company}
+            onChange={onChange}
           />
         </label>
 
-        <label>
+        <label className={style.label}>
           Position
-          <input 
-          type="text" 
-          onChange={onChange}
-          name="position" 
-          value={position}
+          <input
+            className={style.input}
+            type="text"
+            name="position"
+            placeholder="e.g. Frontend Developer"
+            value={position}
+            onChange={onChange}
           />
         </label>
 
-        <label>
-          Salary
-          <input 
-          type="number" 
-          onChange={onChange}
-          name="salary" 
-          value={salary}
+        <label className={style.label}>
+          Salary ($)
+          <input
+            className={style.input}
+            type="number"
+            name="salary"
+            placeholder="e.g. 1200"
+            min="0"
+            value={salary}
+            onChange={onChange}
           />
         </label>
 
-        <label>
+        <label className={style.label}>
           Status
-          <select 
-          name="status"
-          onChange={onChange}
+          <select
+            className={style.select}
+            name="status"
+            value={status}
+            onChange={onChange}
           >
             <option value="applied">Applied</option>
             <option value="interview">Interview</option>
@@ -48,7 +64,9 @@ class ApplicationForm extends Component {
           </select>
         </label>
 
-        <button type="submit">Save Application</button>
+        <button className={style.submitButton} type="submit">
+          Save Application
+        </button>
       </form>
     );
   }

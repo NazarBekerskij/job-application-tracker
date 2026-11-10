@@ -1,21 +1,105 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(6px);
+
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+
+  padding: 32px;
+  border: 1px solid #343b50;
+  border-radius: 18px;
+
+  background: #1b2030;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+
+  animation: slideIn 0.25s ease;
+
+  scrollbar-width: none;
+
+}
+
 .closeButton {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 8px;
-    background: #34384a;
-    color: #f8fafc;
-    font-size: 24px;
-    cursor: pointer;
-    transition: background 0.5s ease;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 8px;
+  background: #2b3245;
+  color: #94a3b8;
+
+  font-size: 23px;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
 }
 
 .closeButton:hover {
   background: #ef4444;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 520px) {
+  .modal {
+    padding: 24px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal {
+    animation: none;
+  }
+}
+
+
+
+
+
+.mopdal::-webkit-scrollbar{
+  display: none;
 }

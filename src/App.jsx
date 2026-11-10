@@ -4,7 +4,9 @@ import { Component } from "react";
 import Header from "./components/Header/Header";
 import Modal from "./components/Modal/Modal";
 import ApplicationForm from "./components/ApplicationForm/ApplicationForm";
+import ApplicationList from "./components/ApplicationList/ApplicationList";
 import { nanoid } from "nanoid";
+
 
 class App extends Component {
   state = {
@@ -17,6 +19,26 @@ class App extends Component {
     editingId: null,
     isModalOpen: false,
   };
+
+
+  componentDidMount(){
+    const saveApplications = window.localStorage.getItem("applications")
+
+    if(saveApplications){
+      this.setState({
+        applications: JSON.parse(saveApplications)
+      })
+    }
+  }
+
+  componentDidUpdate(_, prev){
+    if(prev.applications !== this.state.applications){
+      localStorage.setItem(
+        "applications",
+        JSON.stringify(this.state.applications)
+      )
+    }
+  }
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,13 +82,13 @@ class App extends Component {
   };
 
   render() {
-    const { isModalOpen } = this.state;
+    const { isModalOpen, applications } = this.state;
     return (
       <div>
         <Header onToggleModal={this.handleToggleModal} />
+        <ApplicationList applications={applications} />
         {isModalOpen && (
           <Modal onClose={this.handleToggleModal}>
-            <h2>Add Application</h2>
             <ApplicationForm
               company={this.state.company}
               position={this.state.position}
